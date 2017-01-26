@@ -1,0 +1,14 @@
+<form class="" action="/login" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+  <label for="email">Email</label>
+  <input name="email" type="text">
+
+  <label for="password">Password</label>
+  <input name="password" type="password">
+
+  <button type="submit" name="button">Log In</button>
+</form>
+
+
+<a href="/new">New User</a>

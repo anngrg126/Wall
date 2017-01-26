@@ -1,0 +1,35 @@
+<h1>Welcome <%= User.find_by_id(session[:user_id]).name %></h1>
+
+<form class="" action="/create_post" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+  <input type="text" name="post">
+  <input type="submit" value="Post">
+</form>
+
+<ul>
+<!-- End Looping of Posts   -->
+  <% @posts.each do |x| %>
+  <!-- <li><%= x.user.name %></li> -->
+
+  <!-- <%= x.user.created_at %> -->
+  <li><%= x.post_text %></li>
+  <% @comments = x.comments %>
+  <% @comments.each do |y| %>
+  <%= y.user.name %>
+  <%= x.user.created_at %>
+  <li><%= y.comment_text %></li>
+  <% end %>
+  <!-- Start Form to enter comment -->
+    <form class="" action="/create_comment" method="post">
+      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+      <input type="text" name="comment">
+      <input type="hidden" name="post_id" value="<%= x.id %>">
+      <input type="submit" value="Comment">
+    </form><br><br>
+  <!-- End Form to enter comment   -->
+
+  <% end %>
+<!-- End Looping of Posts   -->
+</ul>
